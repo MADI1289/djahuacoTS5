@@ -1,0 +1,40 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="djahuacoTS5.MainPage"
+             Title="CRUD Personas">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+
+            <Entry x:Name="nombreEntry" Placeholder="Nombre" />
+            <Entry x:Name="correoEntry" Placeholder="Correo" Keyboard="Email" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Button x:Name="guardarButton" Text="Guardar" Clicked="OnGuardarClicked" BackgroundColor="Purple" TextColor="White" />
+                <Button Text="Cancelar" Clicked="OnCancelarClicked" IsVisible="False" x:Name="cancelarButton" BackgroundColor="Gray" TextColor="White"/>
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="personasListView" SelectionMode="Single" SelectionChanged="OnSeleccionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="5" Spacing="5">
+                            <Label Text="{Binding Nombre}" WidthRequest="120"/>
+                            <Label Text="{Binding Correo}" WidthRequest="180"/>
+                            <Button Text="Editar"
+                                    Clicked="OnEditarClicked"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="Orange"
+                                    TextColor="White" />
+                            <Button Text="Eliminar"
+                                    Clicked="OnEliminarClicked"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="Purple"
+                                    TextColor="White" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
